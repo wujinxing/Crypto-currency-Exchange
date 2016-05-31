@@ -1,0 +1,199 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<style>
+		.state-overview {
+			background: yellowgreen;
+			float: left;
+			width: 22%;
+			height: 80px;
+			margin: 0px 10px;
+		}
+		.state-overview .s-ico{
+			background: #1ABC9C;
+			width: 30%;
+			height: 80px;
+			float: left;
+		}
+		.state-overview .s-ico i{
+			color: white;
+			line-height: 80px;
+			height: 80px;
+			width: 100%;
+			font-size: 30px;
+			text-align: center;
+		}
+		.state-overview .value{
+			background: white;
+			width: 70%;
+			height: 80px;
+			float: left;
+			margin: 10px 0;
+			text-align: center;
+		}
+		.state-overview .value p{
+			line-height: 20px;
+			height: 20px;
+			background-color: red;
+			margin: 0;
+			font-size: 16px;
+		}
+		.state-overview .value p:first-child{
+			background-color: yellowgreen;
+			line-height: 40px;
+			height: 40px;
+			font-size: 25px;
+		}
+	</style>
+	<div id="main" class="main">
+		<block name="body">
+		<div class="container-span">
+			<div class="span4">
+				<div class="columns-mod">
+					<div class="hd cf">
+						<h5>系统信息</h5>
+						<div class="title-opt"></div>
+					</div>
+					<div class="bd">
+						<div class="sys-info">
+							<table>
+
+
+								<tr>
+									<th colspan="2">
+										<div class="" style="height: 100px;">
+											<div class="row state-overview">
+												<div class="s-ico">
+													<i class="glyphicon glyphicon-user"></i>
+												</div>
+												<div class="value">
+													<p>注册人数</p>
+													<p>New Users</p>
+												</div>
+											</div>
+
+											<div class="row state-overview">
+												<div class="s-ico">
+													<i class="glyphicon glyphicon-user"></i>
+												</div>
+												<div class="value">
+													<p>注册人数</p>
+													<p>New Users</p>
+												</div>
+											</div>
+
+											<div class="row state-overview">
+												<div class="s-ico">
+													<i class="glyphicon glyphicon-user"></i>
+												</div>
+												<div class="value">
+													<p>注册人数</p>
+													<p>New Users</p>
+												</div>
+											</div>
+
+											<div class="row state-overview">
+												<div class="s-ico">
+													<i class="glyphicon glyphicon-user"></i>
+												</div>
+												<div class="value">
+													<p>注册人数</p>
+													<p>New Users</p>
+												</div>
+											</div>
+										</div>
+									</th>
+								</tr>
+
+								<tr>
+									<th>系统版本</th>
+									<td>1.0.0&nbsp;&nbsp;&nbsp;</td>
+								</tr>
+								<tr>
+									<th>服务器操作系统</th>
+									<td>{$Think.const.PHP_OS}</td>
+								</tr>
+								<tr>
+									<th>运行环境</th>
+									<td>{$Think.server.SERVER_SOFTWARE}</td>
+								</tr>
+								<tr>
+									<td>PHP版本:</td>
+									<td>{$Think.PHP_VERSION}</td>
+								</tr>
+								<tr>
+									<td>Mysql版本:</td>
+									<td><php>$system_info_mysql = M()->query("select version() as v;");</php>{$system_info_mysql.0.v}</td>
+								</tr>
+								<tr>
+									<td>服务器IP:</td>
+									<td>{$_SERVER['SERVER_ADDR']}</td>
+								</tr>
+								<tr>
+									<td>你的 IP:</td>
+									<td>{$_SERVER['REMOTE_ADDR']}</td>
+								</tr>
+								<tr>
+									<td>服务器端口:</td>
+									<td>{$_SERVER['SERVER_PORT']}</td>
+								</tr>
+								<tr>
+									<td>绝对路径:</td>
+									<td>{$_SERVER['DOCUMENT_ROOT']}</td>
+								</tr>
+								<tr>
+									<td>网站域名:</td>
+									<td>{$_SERVER['SERVER_NAME']}</td>
+								</tr>
+								<tr>
+									<td>清理缓存:</td>
+									<td><a style="float: left" class="btn" onclick="Delcahe();">清理缓存</a></td>
+								</tr>
+								<tr>
+									<td>网站开发</td>
+									<td><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=83839140&site=qq&menu=yes">
+											<img border="0" src="http://wpa.qq.com/pa?p=2:83839140:51" alt="点击这里给我发消息" title="点击这里给我发消息" />
+										</a></td>
+								</tr>
+								<tr>
+									<td>官方网址</td>
+									<td><a href="http://www.movesay.com/">www.movesay.com</a></td>
+								</tr>
+								<tr>
+									<td>版权所有</td>
+									<td>本站所有源码数据库等相关信息全部归<a href="http://www.movesay.com/">www.movesay.com</a>所有,未经许可,不得传播!
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</block>
+	</div>
+</div>
+<script type="text/javascript">
+	//清理缓存
+	function Delcahe(){
+		$.get("{:U('Index/delcahe')}",{},function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon:1});
+				window.setTimeout("window.location='{:U('Index/index')}'",1000);
+			}else{
+				layer.msg(data.info,{icon:2});
+			}
+		},"json");
+	}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('.index-box').addClass('current');
+		$('.index-index').addClass('current');
+	});
+</script>
+<!-- /内容区 -->
+<include file="Public:footer" />

@@ -1,0 +1,178 @@
+<include file="Public:header" />
+<div class="wrapbody">
+	<div class="main">
+		<div class="myright" style="width: 1168px;">
+			<div class="wraphtml">
+				<div class="f_title clearfix">
+					<div class="f_title_span left">
+						<span class="current">
+						<i></i>
+							<a href="{:U('/Bazaar/index')}">集市交易</a>
+						</span>
+						<span class="">
+							<a href="{:U('/Bazaar/mysell')}">我的委托卖出</a>
+						</span>
+						<span class="">
+							<a href="{:U('/Bazaar/whole')}">全站成交记录</a>
+						</span>
+						<span class="">
+							<a href="{:U('/Bazaar/mybuy')}">我的买入记录</a>
+						</span>
+					</div>
+				</div>
+				<notempty name="C['bazaar_text_log']">
+				<div class="mytips">
+					<h6 style="color: #ff8000;">温馨提示</h6>
+					{$C['bazaar_text_log']}
+				</div>
+				</notempty>
+				<div class="f_body">
+					<table class="f_table" id="investLog_content">
+						<thead>
+							<tr>
+								<th id="sublist-grid_c0"><select name="type" id="coin_selectTest">
+										<volist name=":C('coin_list')" id="vo">
+										<option value="{$key}"<eq name="coin" value="$key">selected</eq>>{$vo['title']}</option>
+										</volist>
+								</select></th>
+								<th id="sublist-grid_c1">总数量</th>
+								<th id="sublist-grid_c2">剩余数量</th>
+								<th id="sublist-grid_c3">单价</th>
+								<th id="sublist-grid_c3">总金额</th>
+								<th id="sublist-grid_c4">佣金比例</th>
+								<th id="sublist-grid_c4">佣金金额</th>
+								<th id="sublist-grid_c5">委托时间</th>
+								<th id="sublist-grid_c6">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<volist name="list" id="vo">
+							<tr>
+								<td>{:C('coin')[$vo['coin']]['title']}</td>
+								<td>{$vo['num']}</td>
+								<td>{$vo['num']-$vo['deal']}</td>
+								<td>￥{$vo['price']}</td>
+								<td>{$vo['mum']}</td>
+								<td>{$vo['fee']}%</td>
+								<td>{$vo['mum']/100*$vo['fee']}</td>
+								<td>{$vo['addtime']|addtime}</td>
+								<td><eq name="vo.status" value="0"> <a onclick="javascript:showDialog({$vo['id']},{$vo['price']},{$vo['num']-$vo['deal']});" href="javascript:void(0)">买入</a></eq></td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+					<div class="pages">{$page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="okcoinPop" id="withdrawCnyAddress" style="display: none;">
+	<div class="dialog_content" id="dialog_content_CnyAddress" style="margin-left: 0px; margin-top: 150px; left: 550px; top: 21px;">
+		<div class="dialog_title" id="dialog_title_CnyAddress">
+			<span id="CnyAddressTitle">购买确认</span>
+			<a href="javascript:closeAddress();" class="dialog_closed" title="关闭"></a>
+		</div>
+		<div class="dialog_body center">
+			<div style="line-height: 35px; text-align: left; padding-left: 50px;">
+				<ul class="PopLayer">
+					<input id="bazaar_id" type="hidden" value="">
+					<li>
+						<span class="c2" id="lotteryAmountSpan">集市市场:</span>
+						<span id="bazaar_coin"></span>
+					</li>
+					<li>
+						<span class="c2" id="lotteryAmountSpan">集市单价:</span>
+						<span id="bazaar_price" style="color: red;"></span>
+					</li>
+					<li>
+						<span class="c2" id="lotteryAmountSpan">剩余数量:</span>
+						<span id="bazaar_shen" style="color: red;"></span>
+					</li>
+					<li>
+						<span class="c2" id="lotteryAmountSpan">买入数量:</span>
+						<input name="name" id="bazaar_num" type="text" class="cztxinput" style="width: 100px; padding: 2px; padding-bottom: 5px;">
+					</li>
+					<li>
+						<span class="c2" id="lotteryAmountSpan">交易密码:</span>
+						<input name="name" id="bazaar_paypassword" type="password" class="cztxinput" style="width: 100px; padding: 2px; padding-bottom: 5px;">
+						<a href="{:U('/Login/findpaypwd')}" class="reg_floatr">忘记?</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)" onclick="Update()" class="btn" id="btn" style="">立 即 购 买</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="dialogBoxShadow" style="position: absolute; top: 0px; left: 0px; z-index: 100; background-color: rgb(0, 0, 0); opacity: 0.4; width: 100%; background-position: initial initial; background-repeat: initial initial; display: none;"></div>
+<script type="text/javascript">
+
+$('#dialogBoxShadow').height($(document).height());
+
+
+	$("#coin_selectTest").change(function(){
+		var coin=$("#coin_selectTest option:selected").val();
+		window.location='/Bazaar/log/coin/'+coin+'.html';
+	});
+
+
+	function closeAddress(){
+		$("#withdrawCnyAddress").hide();
+		$("#dialogBoxShadow").hide();
+	}
+
+
+	function showDialog(id,price,shen){
+		$("#withdrawCnyAddress").show();
+		$("#dialogBoxShadow").show();
+	
+		$("#bazaar_id").val(id);
+		$("#bazaar_coin").html("{:C('coin')[$coin]['title']}");
+		$("#bazaar_price").html(price);
+		$("#bazaar_shen").html(shen);
+	}
+	
+	function Update(){
+		var id=$("#bazaar_id").val();
+		var num=$("#bazaar_num").val();
+		var paypassword=$("#bazaar_paypassword").val();
+		
+		if(id==""||id==null){
+			layer.msg('参数错误',{icon:1});
+			window.setTimeout("window.location='/Bazaar/log'",1000);
+		}
+		
+		
+		if(num==""||num==null){
+			layer.tips('请输入数量',"#bazaar_num",{tips:1});
+			return false;
+		}
+		if(paypassword==""||paypassword==null){
+			layer.tips('请输入交易密码',"#bazaar_paypassword",{tips:1});
+			return false;
+		}
+		
+		
+		
+		$.post("/Bazaar/log",{id:id,num:num,paypassword:paypassword},function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon:1});
+				window.setTimeout("window.location='/Bazaar/log'",1000);
+			}else{
+				layer.msg(data.info,{icon:2});
+				if(data.url){
+					window.setTimeout("window.location="+data.url,1000);
+				}
+			}
+		},"json");
+	}
+
+
+</script>
+<script>
+	//顶部菜单高亮
+	$('#menu_top_bazaar').addClass('current');
+</script>
+<include file="Public:footer" />

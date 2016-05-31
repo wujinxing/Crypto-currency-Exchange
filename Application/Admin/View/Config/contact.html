@@ -1,0 +1,116 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">客服配置</span>
+		</div>
+
+		<div class="tab-wrap">
+
+			<div class="tab-content">
+				<form id="form" action="{:U('Config/save')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+																
+								<tr class="controls">
+									<td class="item-label">联系手机:</td>
+									<td><input type="text" class="form-control" name="contact_moble" value="{$C['contact_moble']}" ></td>
+									<td class="item-note">联系手机</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系新浪微博:</td>
+									<td><input type="text" class="form-control" name="contact_weibo" value="{$C['contact_weibo']}" ></td>
+									<td class="item-note">联系新浪微博</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系腾讯微博:</td>
+									<td><input type="text" class="form-control" name="contact_tqq" value="{$C['contact_tqq']}" ></td>
+									<td class="item-note">联系腾讯微博</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系QQ:</td>
+									<td><input type="text" class="form-control" name="contact_qq" value="{$C['contact_qq']}" ></td>
+									<td class="item-note">联系QQ 多个用户“|”分割</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系QQ群:</td>
+									<td><input type="text" class="form-control" name="contact_qqun" value="{$C['contact_qqun']}" ></td>
+									<td class="item-note">联系QQ群 多个用户“|”分割</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系微信:</td>
+									<td><input type="text" class="form-control" name="contact_weixin" value="{$C['contact_weixin']}" ></td>
+									<td class="item-note">联系微信</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">微信二维码 :</td>
+									<td><input type="file" class="form-control" name="contact_weixin_img" value="{$C['contact_weixin_img']}" style="margin-bottom: 10px;"> <span style="">
+											<notempty name="C['contact_weixin_img']">
+											<img src="__UPLOAD__/public/{$C['contact_weixin_img']}" width="80" height="80" style="margin-bottom: 10px;">
+											</notempty>
+										</span></td>
+									<td class="item-note">联系微信二维码</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系邮箱:</td>
+									<td><input type="text" class="form-control" name="contact_email" value="{$C['contact_email']}" ></td>
+									<td class="item-note">联系邮箱</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系支付宝:</td>
+									<td><input type="text" class="form-control" name="contact_alipay" value="{$C['contact_alipay']}" ></td>
+									<td class="item-note">联系支付宝</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">支付宝二维码 :</td>
+									<td><input type="file" class="form-control" name="contact_alipay_img" value="{$C['contact_alipay_img']}" style="margin-bottom: 10px;"> <span style="">
+											<notempty name="C['contact_alipay_img']">
+											<img src="__UPLOAD__/public/{$C['contact_alipay_img']}" width="80" height="80" style="margin-bottom: 10px;">
+											</notempty>
+										</span></td>
+									<td class="item-note">联系支付宝二维码</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系银行账号:</td>
+									<td><input type="text" class="form-control" name="contact_bank" value="{$C['contact_bank']}" ></td>
+									<td class="item-note">格式 银行名称|开户姓名|银行卡号 用”|“分割</td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class= "btn submit-btn"  target-form="form-horizontal" id="submit" type="submit">确 定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+										</div>
+									</td>
+								</tr>
+								
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function(){
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.config-box').addClass('current');
+		//边导航高亮
+		$('.config-contact').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

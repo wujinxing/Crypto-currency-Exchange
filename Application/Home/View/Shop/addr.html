@@ -1,0 +1,95 @@
+<include file="Public:header" />
+<div class="wrapbody">
+	<div class="main">
+		<div class="myright" style="width: 1068px;">
+			<div class="wraphtml">
+				<div class="f_title clearfix">
+					<div class="f_title_span left">
+						<span class="">
+							<i></i>
+							<a href="/Shop">在线购物</a>
+						</span>
+						<span class="">
+							<a href="/Shop/log">购物管理</a>
+						</span>
+						<span class="current">
+							<i></i>
+							<a href="/Shop/addr">收货地址</a>
+						</span>
+					</div>
+				</div>
+				<notempty name="C['shop_text_addr']">
+				<div class="mytips">
+					<h6 style="color: #ff8000;">温馨提示</h6>
+					{$C['shop_text_addr']|htmlspecialchars_decode}
+				</div>
+				</notempty>
+				<div class="rzinfos">
+					
+					<div class="w_div clearfix">
+						<div class="w1">收货人姓名：</div>
+						<div class="w2">
+							<input type="text" class="cztxinput" id="truename" name="truename" autocomplete="off" value="{$addr.truename}">
+						</div>
+					</div>
+					<div class="w_div clearfix">
+						<div class="w1">收货人电话：</div>
+						<div class="w2">
+							<input type="text" class="cztxinput" id="moble" name="moble" autocomplete="off" value="{$addr.moble}">
+						</div>
+					</div>
+					<div class="w_div clearfix">
+						<div class="w1">收货地址：</div>
+						<div class="w2">
+							<input type="text" class="cztxinput" id="name" name="name" autocomplete="off" style="width: 400px;" value="{$addr.name}">
+						</div>
+					</div>
+					
+					
+					
+					<div class="w_div clearfix">
+						<div class="w1">&nbsp;</div>
+						<div class="w2">
+							<input type="button" class="btn-cztx" id="passwordChangeButton" onclick="Update()" value="提交" title="提交">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function Update(){
+		var truename=$("#truename").val();
+		var moble=$("#moble").val();
+		var name=$("#name").val();
+		if(truename==""||truename==null){
+			layer.tips('请输入收货人姓名','#truename',{tips:3});
+			return false;
+		}
+		if(moble==""||moble==null){
+			layer.tips('请输入收货人电话','#moble',{tips:3});
+			return false;
+		}
+		if(name==""||name==null){
+			layer.tips('请输入收货地址','#name',{tips:3});
+			return false;
+		}
+
+		$.post("{:U('Shop/addr')}",{truename:truename,moble:moble,name:name},function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon:1});
+				window.setTimeout("window.location='{:U('Shop/addr')}'",1000);
+			}else{
+				layer.msg(data.info,{icon:2});
+			}
+		},"json");
+	}
+</script>
+<script>
+	//顶部菜单高亮
+	$('#menu_top_index').addClass('current');
+
+</script>
+<include file="Public:footer" />

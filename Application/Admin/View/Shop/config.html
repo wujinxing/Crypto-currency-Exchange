@@ -1,0 +1,83 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">商城配置</span>
+		</div>
+
+		<div class="tab-wrap">
+
+			<div class="tab-content">
+				<form id="form" action="{:U('Mycz/config')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								
+						
+								
+								<tr class="controls">
+									<td class="item-label">商城首页 :</td>
+									<td><textarea name="shop_text_index">{$C['shop_text_index']}</textarea></td>
+									<td class="item-note">商城首页 温馨提示 文字说明</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">购物记录 :</td>
+									<td><textarea name="shop_text_log">{$C['shop_text_log']}</textarea></td>
+									<td class="item-note">购物记录 温馨提示 文字说明</td>
+								</tr>
+								
+								<tr class="controls">
+									<td class="item-label">收货地址 :</td>
+									<td><textarea name="shop_text_addr">{$C['shop_text_addr']}</textarea></td>
+									<td class="item-note">收货地址 温馨提示 文字说明</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">商品详情页 :</td>
+									<td><textarea name="shop_text_view">{$C['shop_text_view']}</textarea></td>
+									<td class="item-note">商品详情页 温馨提示 文字说明</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class= "btn submit-btn ajax-post"  target-form="form-horizontal" id="submit" type="submit">确 定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+										</div>
+									</td>
+								</tr>
+								
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function(){
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function(K){
+		editor=K.create('textarea',{width:'465px',height:'60px',items:['source','fontname','fontsize','|','forecolor','hilitecolor','bold','italic','underline','removeformat','|','justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','|','emoticons','link','fullscreen'],afterBlur: function () { this.sync(); }});
+	});
+</script>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.shop-box').addClass('current');
+		//边导航高亮
+		$('.shop-config').addClass('current');
+	
+	});
+</script>
+<include file="Public:footer" />

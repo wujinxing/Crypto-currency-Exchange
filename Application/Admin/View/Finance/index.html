@@ -1,0 +1,109 @@
+<include file="Public:header" />
+<script src="__PUBLIC__/Admin/js/layer/laydate/laydate.js"></script>
+<script>
+	laydate.skin('huanglv');
+</script>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">充值记录</span>
+			<notempty name="name">
+				<span class="h2-title">>><a href="{:U('Mycz/index')}">充值列表</a></span>
+			</notempty>
+		</div>
+
+		<div class="cf">
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1" action="{:U('Mycz/index')}">
+				
+						<select style="height: 32px; font-size: 16px; width: 100px; float: left; margin-right: 10px;" name="status">
+							<option value="-2"<empty name="status">selected</empty> >全部
+							</option>
+							
+							<option value="0"<eq name="status" value="0">selected </eq> >未到账
+							</option>
+							<option value="1"<eq name="status" value="1">selected </eq>>已到账
+							</option>
+						</select>
+						<input  onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" type="text" name="date" class="search-input" value="" placeholder="选择日期">
+
+						<input type="text" name="name" class="search-input" value="{$name}" placeholder="请输入用户名 或 订单号">
+
+						<a class="sch-btn" href="javascript:;" id="search">
+							<i class="btn-search"></i>
+						</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+					<tr>
+						<th class="row-selected row-selected"><input class="check-all" type="checkbox" /></th>
+						<th class="">ID</th>
+						<th class="">用户名</th>
+						<th class="">充值金额</th>
+						<th class="">充值方式</th>
+						<th class="">充值订单</th>
+						<th class="">充值时间</th>
+					
+						<th class="">状态</th>
+						<th class="">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<notempty name="list"> <volist name="list" id="vo">
+					<tr>
+						<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+						<td>{$vo.id}</td>
+						<td>{$vo['username']}</td>
+						<td>{$vo['num']}</td>
+						<td>{:C('mycz')[$vo['type']]}</td>
+						<td>{$vo.tradeno}</td>
+						
+						<td>{$vo.addtime|addtime}</td>
+					
+						<td><eq name="vo.status" value="1">已到账<else />未到账</eq></td>
+						<td><neq name="vo.status" value="1"> <a href="{:U('Mycz/status?id='.$vo['id'])}" class="ajax-get">已到账 </a></neq></td>
+					</tr>
+					</volist> <else />
+					<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+					</notempty>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	//搜索功能
+	$(function(){
+		$('#search').click(function(){
+			$('#formSearch').submit();
+		});
+	});
+	//回车搜索
+	$(".search-input").keyup(function(e){
+		if(e.keyCode===13){
+			$("#search").click();
+			return false;
+		}
+	});
+</script>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.mycz-box').addClass('current');
+		//边导航高亮
+		$('.mycz-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

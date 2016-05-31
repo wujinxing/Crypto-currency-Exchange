@@ -1,0 +1,79 @@
+<include file="Public:header" />
+
+<div class="autobox">
+
+ <div class="now">
+
+  <a href="/" class="orange">Home</a> &gt;<a href="{:U('Article/index')}" class="orange"> Help </a> &gt; Registration Guide
+
+ </div>
+
+ <div class="assets_center clear po_re zin70">
+
+  <!--Left menu-->
+
+  <div class="coin_menu">
+
+   <div class="coin_menu_box">
+
+    <volist name="ArticleTypeList" id="vo">
+
+    <dl>
+
+     <dt
+
+      <eq name="type" value="$key">class="here"</eq>
+
+      ><a href="{:U('Article/index','type='.$key)}">{$vo.title}</a>
+
+     </dt>
+
+    </dl>
+
+    </volist>
+
+   </div>
+
+  </div>
+
+  <!--Right content-->
+
+  <div class="assets_content w900 right bg_w mh1500">
+
+<h1 class="h1news">{$data.title}</h1>
+
+   <div class="new_list">
+
+   <div class="rightcontent">
+
+			
+
+			<div class="articletime">
+
+				<span>delivery time：{$data.addtime|date="Y-m-d H:i:s",###}</span><!--<span>布人：{:C('web_title')}</span>-->			</div>
+
+			<div class="articletext">{$data['content']}</div>
+
+		</div>
+
+   </div>
+
+  </div>
+
+ </div>
+
+</div>
+
+<br>
+
+<br>
+
+<script>
+
+ //Menu highlighting
+
+ $('#help_box').addClass('active');
+
+</script>
+
+<include file="Public:footer" />

@@ -1,0 +1,1830 @@
+<include file="Public:header"/>
+<style>
+	/* CSS Document */
+	a:hover{
+		color: #fff;
+	}
+	#my_licai:hover{
+		color:#F78437;
+	}
+	/*invest common*/
+	.title {
+		height: 20px;
+		line-height: 20px;
+	}
+
+	.title h2 {
+		font-weight: normal;
+		color: #121212;
+		border-left: 5px #f60 solid;
+		padding-left: 10px;
+	}
+
+	.title.icontitle h2 {
+		border-left: none;
+		padding-left: 0;
+	}
+
+	.title.icontitle .iconfont {
+		font-size: 30px;
+	}
+
+	.title .more:hover {
+		color: #f60;
+	}
+
+	.tendbacking {
+		background: url(../images/tendbacking.png) no-repeat;
+		width: 130px;
+		height: 97px;
+		position: absolute;
+		z-index: 9;
+		right: 20px;
+		bottom: -20px;
+	}
+
+	.tenddone {
+		background: url(../images/tenddone.png) no-repeat;
+		width: 130px;
+		height: 97px;
+		position: absolute;
+		z-index: 9;
+		right: 20px;
+		bottom: -20px;
+	}
+
+	.page_title {
+		height: 30px;
+		line-height: 30px;
+	}
+
+	.select_wrap {
+		background: #fff;
+		padding: 0 20px;
+		overflow: hidden;
+	}
+
+	.select_list dl {
+		padding: 20px 0;
+		border-bottom: 1px #e9e9e9 solid;
+	}
+
+	.select_list dl dt {
+		color: #999;
+		margin-right: 20px;
+	}
+
+	.select_list dd {
+		margin: 0 5px;
+		float: left;
+	}
+
+	.select_list dd.first {
+		width: 60px;
+	}
+
+	.select_list dd a {
+		color: #333;
+	}
+
+	.select_list a:hover, .select_list a.on {
+		color: #f60;
+	}
+
+	.faq_list {
+		width: 400px;
+		height: 146px;
+		position: relative;
+	}
+
+	.faq_list ul {
+		padding-left: 20px;
+		border-left: 1px #dedede solid;
+	}
+
+	.faq_list ul li {
+		height: 15px;
+		line-height: 15px;
+		margin-bottom: 17.75px;
+	}
+
+	.faq_list ul li a {
+		color: #999;
+	}
+
+	.faq_list ul li a:hover {
+		color: #f60;
+	}
+
+	.faq_more_bg {
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		right: 0px;
+		top: -20px;
+		display: block;
+		border-top: 65px solid #f90;
+		border-left: 65px solid transparent;
+	}
+
+	.faq_more {
+		position: absolute;
+		display: block;
+		right: 7px;
+		top: -15px;
+	}
+
+	.item_info {
+		width: 726px;
+		overflow: hidden;
+	}
+
+	.item {
+		background: #fff;
+		height: 88px;
+		overflow: hidden;
+		margin-bottom: 20px;
+	}
+
+	.item.car {
+		border-left: 4px #fca352 solid
+	}
+
+	.item .mark {
+		display: block;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		background: #fca352;
+		border-radius: 30px;
+		behavior: url(PIE.php)
+	}
+
+	#pro_num li {
+		width: 150px;
+		float: left;
+		border-left: 1px #dedede dotted;
+		height: 47px;
+	}
+
+	#pro_num li.first {
+		border: none;
+		width: 180px;
+	}
+
+	.pro_bar_btm {
+		width: 324px;
+		padding-left: 50px;
+		margin-right: 25px;
+		border-left: 1px #dedede solid;
+		height: 88px;
+		position: relative;
+	}
+
+	.pro-bar {
+		border-bottom: 1px #dedede solid;
+	}
+
+	.process-bar {
+		width: 185px;
+	}
+
+	.pro_bar_btm a.ui-btm {
+		position: absolute;
+		bottom: 0px;
+		right: 0px;
+	}
+
+	#detail {
+		background: none;
+	}
+
+	#detail .item_info {
+		width: 800px;
+		height: 255px;
+		overflow: hidden;
+		background: #fff;
+	}
+
+	.item#detail {
+		height: auto;
+	}
+
+	#detail .pro_bar_btm {
+		width: 315px;
+		height: 255px;
+		background: #fff;
+		padding: 20px 30px 30px 30px;
+		margin-right: 0px;
+		border: none;
+		overflow: hidden;
+	}
+
+	#detail #pro_num {
+		padding-bottom: 40px;
+	}
+
+	.time_info {
+		width: 680px;
+	}
+
+	.time_info td {
+		line-height: 40px;
+	}
+
+	.line {
+		border-bottom: 1px #dedede solid;
+		height: 1px;
+		line-height: 1px;
+		overflow: hidden;
+	}
+
+	#detail .pro_bar_btm a.ui-btm {
+		position: relative;
+	}
+
+	.invest_info {
+		margin-top: 40px;
+		position: relative;
+	}
+
+	.i_i_bar {
+		height: 50px;
+		overflow: hidden;
+		background: #f4f4f4;
+		width: 1200px;
+		z-index: 999;
+	}
+
+	.i_i_bar li {
+		float: left;
+		width: 150px;
+		text-align: center;
+		line-height: 50px;
+		background: #ccc;
+		margin-right: 10px;
+		color: #fff;
+		font-size: 16px;
+		cursor: pointer;
+	}
+
+	.i_i_bar li.on {
+		background: #fff;
+		color: #f60;
+		border-top: 2px #f90 solid;
+		line-height: 48px;
+	}
+
+	.i_i_content {
+		background: #fff;
+		padding: 30px 0px 30px 30px;
+	}
+
+	.row_l {
+		width: 725px;
+	}
+
+	.row_r {
+		width: 380px;
+	}
+
+	.row_item {
+		margin-bottom: 40px;
+	}
+
+	.r_i_title {
+		width: 85px;
+		overflow: hidden;
+		margin-right: 30px;
+	}
+
+	.r_i_cell {
+		width: 84px;
+		height: 84px;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		color: #565656;
+		font-size: 14px;
+		line-height: 24px;
+		background: #ffe5bf;
+		border: 1px #ff9900 solid;
+	}
+
+	.r_i_cell#wind {
+		background: #eeffbf;
+		border: 1px #00ff00 solid
+	}
+
+	.r_i_cell#baseinfo {
+		background: #ffe2bf;
+		border: 1px #ff5f4a solid
+	}
+
+	.r_i_cell#collateral {
+		background: #c8ebff;
+		border: 1px #00b7ee solid
+	}
+
+	.r_i_info {
+		width: 610px;
+	}
+
+	.r_i_info p {
+		line-height: 28px;
+	}
+
+	.r_i_info table td {
+		height: 30px;
+	}
+
+	.r_i_info table td .spec {
+		background: #f90;
+		color: #fff;
+		padding: 2px 10px 3px 10px;
+		border-radius: 3px;
+		behavior: url(PIE.php)
+	}
+
+	.check li {
+		float: left;
+		width: 60px;
+		height: 72px;
+		text-align: center;
+		position: relative;
+		border-radius: 10px 0px 0px;
+		border: 1px #f90 solid;
+		color: #f90;
+		margin-right: 14px;
+		margin-bottom: 20px;
+	}
+
+	.check li .checkicon {
+		font-size: 35px;
+		height: 40px;
+		margin-top: 5px;
+	}
+
+	.check li p {
+		line-height: 20px;
+		color: #121212;
+	}
+
+	.check li .true {
+		position: absolute;
+		font-size: 18px;
+		bottom: -8px;
+		right: -8px;
+		color: #f90;
+	}
+
+	.law p {
+		text-indent: 2em;
+		width: 225px;
+		line-height: 24px;
+	}
+
+	.basepic {
+		height: 137px;
+		line-height: 137px;
+		margin-top: 30px;
+	}
+
+	.basepic .arrow {
+		color: #ccc;
+		font-size: 40px;
+		display: block;
+		width: 40px;
+		height: 137px;
+		line-height: 137px;
+	}
+
+	.basepic .arrow:active {
+		color: #f60;
+	}
+
+	.bd-wrap {
+		height: 137px;
+		overflow: hidden;
+		width: 1020px;
+		margin: 0 20px;
+		float: left;
+	}
+
+	.basepic .bd li {
+		border: 5px #f1f1f1 solid;
+		width: 170px;
+		height: 127px;
+		text-align: center;
+		margin: 0px 12px;
+		float: left;
+	}
+
+	.basepic .bd li:hover {
+		border: 5px #dedede solid;
+	}
+
+	.basepic .bd li a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.record-wrap {
+		overflow: hidden;
+	}
+
+	.record {
+		color: #565656;
+	}
+
+	.record tr.hide {
+		display: none;
+	}
+
+	.record th {
+		background: #f1f1f1;
+		height: 40px;
+		font-size: 14px;
+	}
+
+	.record td {
+		text-align: center;
+		height: 36px;
+		font-size: 13px;
+		border-bottom: 1px #dedede dashed;
+	}
+
+	/* CSS Document */
+	body {
+		background: #f4f4f4;
+	}
+
+	.iconfont {
+		font-family: "iconfont";
+		font-style: normal;
+		-webkit-font-smoothing: antialiased;
+		display: inline-block;
+		-webkit-text-stroke-width: 0.2px;
+	}
+
+	/* 顶部bar */
+	.topbar {
+		height: 40px;
+		line-height: 40px;
+		background: #333;
+		color: #b0b0b0;
+		font-size: 13px;
+	}
+
+	.topbar a {
+		color: #b0b0b0;
+	}
+
+	.topbar a:hover {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.top_bar_menu {
+		width: 120px;
+		text-align: center;
+		background: #fff;
+	}
+
+	.top_bar_menu dd a {
+		display: block;
+		height: 30px;
+		line-height: 30px;
+	}
+
+	.top_bar_menu dd a:hover {
+		background: #f1f1f1;
+	}
+
+	.top_bar_btm {
+		border: 1px #b0b0b0 solid;
+		padding: 3px 15px;
+		border-radius: 100px 0px 0px 100px;
+		behavior: url(PIE.php)
+	}
+
+	.top_bar_btm_r {
+		border: 1px #b0b0b0 solid;
+		padding: 3px 15px;
+		border-radius: 0px 100px 100px 0px;
+		margin-left: -1px;
+		behavior: url(PIE.php)
+	}
+
+	.top_bar_btm:hover {
+		border: 1px #fff solid;
+	}
+
+	/* 头部 */
+	.head {
+		width: 100%;
+		height: 90px;
+		overflow: hidden;
+		background: #fff;
+	}
+
+	.head .logo {
+		margin-top: 22px;
+	}
+
+	/*底部*/
+	.footer {
+		background: #fff;
+		border-top: 1px #f4f4f4 solid;
+	}
+
+	.footer-links {
+		padding: 30px 0px 0px 0px;
+		width: 945px;
+		margin: 0 auto;
+	}
+
+	.footer-links li {
+		border-right: 1px #ccc solid;
+		height: 16px;
+		line-height: 16px;
+		float: left;
+	}
+
+	.footer-links li.last {
+		border: none;
+	}
+
+	.footer-links li a {
+		color: #565656;
+	}
+
+	.footer-links li a:hover {
+		color: #f60;
+	}
+
+	.foot_info {
+		margin-top: 40px;
+		border-bottom: 1px #e0e0e0 solid;
+		padding-bottom: 30px;
+	}
+
+	.f_i_l {
+		width: 334px;
+		margin-right: 50px;
+	}
+
+	.f_i_m {
+		width: 498px;
+		height: 120px;
+		overflow: hidden;
+		padding-left: 30px;
+		border-left: 1px #e0e0e0 solid;
+		border-right: 1px #e0e0e0 solid;
+		padding-right: 30px;
+		margin-right: 50px;
+	}
+
+	.f_i_r {
+		width: 205px;
+		overflow: hidden;
+	}
+
+	.f_i_l .tel {
+		font-size: 90px;
+	}
+
+	.tel_num {
+		line-height: 22px;
+	}
+
+	.f_i_m .links li {
+		float: left;
+		width: 66px;
+		padding: 0 50px;
+		height: 35px;
+	}
+
+	.f_i_m .links li a {
+		font-size: 14px;
+		color: #787878;
+	}
+
+	.f_i_m .links li a:hover {
+		color: #f60;
+	}
+
+	.footer-info-p li {
+		color: #999;
+		line-height: 20px;
+	}
+
+	.safe-logo li {
+		float: left;
+		margin-right: 10px;
+	}
+
+	.safe-logo li img {
+		height: 35px;
+		width: auto;
+	}
+
+	.f_weixin {
+		text-align: center;
+		font-size: 14px;
+		line-height: 19px;
+	}
+
+	/*投资列表公共样式*/
+	.process-bar {
+		height: 4px;
+		width: 185px;
+		border-radius: 4px;
+		background: #dbdbdb;
+		position: relative;
+		behavior: url(PIE.php)
+	}
+
+	.process-bar-hover {
+		background: #f90;
+		height: 4px;
+		border-radius: 4px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		behavior: url(PIE.php)
+	}
+
+	/*按钮控件*/
+	.ui-btm {
+		height: 36px;
+		line-height: 36px;
+		border-radius: 3px;
+		overflow: hidden;
+		display: inline-block;
+		text-align: center;
+		transition: all 0.2s linear;
+		-moz-transition: all 0.2s linear;
+		-webkit-transition: all 0.2s linear;
+		-o-transition: all 0.2s linear;
+	}
+
+	.ui-btm-db {
+		display: block;
+	}
+
+	.ui-btm-w120 {
+		width: 114px;
+	}
+
+	.ui-btm-w100 {
+		width: 100px;
+	}
+
+	.ui-btm-100 {
+		width: 100%;
+	}
+
+	.ui-btm.ui-btm-f60 {
+		background: #f60
+	}
+
+	.ui-btm.ui-btm-f60:hover {
+		background: #f30;
+	}
+
+	.ui-btm.ui-btm-green {
+		background: #0C0;
+	}
+
+	.ui-btm.ui-btm-green:hover {
+		background: #00d900;
+	}
+
+	.ui-btm.ui-btm-ccc {
+		background: #ccc
+	}
+
+	.ui-btm-bor {
+		border: 1px #dedede solid;
+		background: none;
+		cursor: pointer;
+		height: 34px;
+		line-height: 34px;
+	}
+
+	input.ui-btm-bor {
+		height: 36px;
+		line-height: 36px;
+	}
+
+	.ui-btm-bor:hover {
+		background: #f5f5f5;
+	}
+
+	.ui-btm-sm {
+		border: 0px;
+		cursor: pointer;
+	}
+
+	.ui-btm-sm:hover {
+		background: #f60;
+	}
+
+	.ui-btm-c {
+		border-radius: 100px;
+	}
+
+	/*分页样式*/
+	.page {
+		text-align: center;
+		height: 33px;
+		line-height: 33px;
+		padding: 30px 0;
+		overflow: hidden;
+	}
+
+	.page span, .page a {
+		padding: 8px 12px 8px 12px;
+		font-family: "微软雅黑";
+		background: #f90;
+		margin-left: 15px;
+		color: #fff;
+	}
+
+	.page span.on {
+		background: #f90;
+		color: #fff;
+	}
+
+	.page a {
+		color: #121212;
+		background: #dedede;
+		margin-left: 15px;
+	}
+
+	.page a:hover {
+		background: #f90;
+		color: #fff;
+	}
+
+	/*右边栏 start*/
+	#wj_side {
+		width: 34px;
+		height: 100%;
+		position: fixed;
+		right: 0;
+		top: 0;
+		background: #4d4d4d;
+		z-index: 20;
+		color: #fff;
+		text-align: center;
+		line-height: 13px;
+	}
+
+	.wj_side_on {
+		background: #f90;
+	}
+
+	.wj_charts {
+		width: 34px;
+		height: 170px;
+		cursor: pointer;
+		display: table-cell;
+		vertical-align: middle;
+		border-bottom: 1px #999 solid;
+	}
+
+	.wj_charts:hover {
+		background: #f90;
+	}
+
+	.wj_mycclc {
+		display: block;
+		width: 100%;
+		padding: 20px 0;
+		position: relative;
+		color: #fff;
+		cursor: pointer;
+		border-bottom: 1px #999 solid;
+	}
+
+	.wj_mycclc:hover {
+		background: #f90;
+	}
+
+	.wj_link {
+		display: block;
+		width: 34px;
+		position: relative;
+	}
+
+	.wj_link_main {
+		height: 34px;
+		width: 93px;
+		color: #efefef;
+		line-height: 34px;
+		position: absolute;
+		right: 50px;
+		top: 0;
+		text-align: left;
+		opacity: 0;
+		width: 111px;
+		z-index: 999;
+		right: 50px;
+		display: none;
+	}
+
+	.wj_link_text {
+		width: 85px;
+		background: #555;
+		padding: 0 10px 0 10px;
+		float: left;
+	}
+
+	.wj_link_text a {
+		color: #fff;
+	}
+
+	.wj_link_text a:hover {
+		color: #f90
+	}
+
+	.wj_link_text span {
+		border-bottom: 1px dotted #9b9a9a;
+		display: block;
+	}
+
+	.wj_link_jt {
+		width: 6px;
+		height: 100%;
+		float: left;
+		background: url(../images/xuanfu_jt.png) left center no-repeat;
+	}
+
+	.wj_link:hover {
+		background-color: #f90;
+	}
+
+	.wj_qq {
+		text-align: center;
+	}
+
+	.wj_bottom {
+		width: 34px;
+		position: absolute;
+		bottom: 4px;
+		left: 0;
+	}
+
+	.wj_wechart {
+		width: 34px;
+		height: 37px;
+		line-height: 37px;
+		cursor: pointer;
+		position: relative;
+	}
+
+	.wj_wechart:hover {
+		background-color: #f90;
+	}
+
+	.wj_wechart_main {
+		width: 191px;
+		height: 0px;
+		position: absolute;
+		top: -140px;
+		right: 28px;
+		opacity: 0;
+		filter: alpha(opacity=0);
+		background: url(../images/xuanfu-weixin.png) no-repeat;
+		display: none;
+	}
+
+	.wj_wechart_main.wj_phoneweb_main {
+		background: url(../images/xuanfu-shouji.png) no-repeat;
+	}
+
+	.wj_wechart_main img {
+		width: 125px;
+		height: 125px;
+		margin: 24px 0 0 -3px;
+	}
+
+	.wj_gotop {
+		display: block;
+		width: 34px;
+		height: 35px;
+		line-height: 35px;
+	}
+
+	.wj_gotop:hover {
+		background-color: #f90;
+	}
+
+	.wj_right_box {
+		width: 240px;
+		height: 100%;
+		background: #fff;
+		position: fixed;
+		right: -240px;
+		top: 0;
+		z-index: 20;
+		text-align: left;
+		color: #565656;
+	}
+
+	.wj_box {
+		height: 100%;
+		width: 240px;
+	}
+
+	.wj_phb_title {
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
+		text-align: center;
+	}
+
+	.wj_phb_title span {
+		font-size: 13px;
+	}
+
+	.rank-hd {
+		height: 36px;
+		line-height: 36px;
+		background: #f1f1f1;
+	}
+
+	.rank-hd li {
+		float: left;
+		width: 60px;
+		text-align: center;
+		font-size: 14px;
+		cursor: pointer;
+	}
+
+	.rank-hd li.on {
+		background: #fff;
+		color: #f60;
+		font-weight: bold;
+		border-top: 2px #f60 solid;
+		line-height: 34px;
+	}
+
+	.rank-bd {
+		width: 240px;
+		padding: 18px 0 14px 0;
+	}
+
+	.rank-bd li {
+		height: 23px;
+		font-size: 13px;
+		float: left;
+		line-height: 23px;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.rank-bd li span {
+		display: inline-block;
+		float: left
+	}
+
+	.rank_no {
+		width: 23px;
+		height: 23px;
+		margin: 0 auto;
+		border-radius: 23px;
+		background: #999;
+		color: #fff;
+		display: block;
+		font-style: normal;
+		behavior: url(PIE.php)
+	}
+
+	.rank_no1 {
+		background: #f60
+	}
+
+	.rank-num {
+		width: 51px;
+	}
+
+	.rank-id {
+		width: 75px;
+		text-align: left;
+		padding-left: 10px;
+	}
+
+	.rank-money {
+		width: 96px;
+	}
+
+	.wj_phb_tel {
+		width: 240px;
+		height: 40px;
+		line-height: 40px;
+		background: #ff7225;
+		text-align: center;
+		position: absolute;
+		bottom: 0px;
+	}
+
+	.wj_login .text_bar {
+	}
+
+	.wj_login .text_bar input {
+		width: 193px;
+		padding-left: 5px;
+		height: 34px;
+		line-height: 34px;
+		color: #565656;
+		overflow: hidden;
+	}
+
+	/*已登陆*/
+	.btm {
+		border: 1px #dedede solid;
+		border-radius: 3px;
+		height: 36px;
+		line-height: 36px;
+		behavior: url(PIE.php)
+	}
+
+	.btm a {
+		display: block;
+		width: 99px;
+		float: left;
+		text-align: center;
+		font-size: 14px;
+		color: #121212;
+	}
+
+	.btm a.charge_btm {
+		width: 98px;
+		border-right: 1px #dedede solid;
+		color: #f60;
+	}
+
+	.btm a:hover {
+		color: #f60;
+	}
+
+	.account_total {
+		border-top: 1px #dfdfdf solid;
+		border-bottom: 1px #dfdfdf solid;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.account_total li {
+		width: 49%;
+	}
+
+	.link_btm {
+		border-collapse: collapse;
+		line-height: 24px;
+	}
+
+	.link_btm td {
+		height: 70px;
+	}
+
+	.link_btm tr {
+		border-bottom: 1px #dfdfdf solid;
+	}
+
+	.link_btm tr.tr-last {
+		border-bottom: none;
+	}
+
+	.link_btm td.td-l {
+		border-right: 1px #dfdfdf solid;
+	}
+
+	.link_btm td a {
+		display: block;
+		position: relative;
+	}
+
+	.sms_tips {
+		padding: 2px 3px 3px 3px;
+		line-height: normal;
+		background: #09C;
+		color: #fff;
+		position: absolute;
+		top: 0px;
+		right: 10px;
+		border-radius: 2px;
+		behavior: url(PIE.php)
+	}
+
+	/* CSS Document */
+
+	/*
+    KISSY CSS Reset
+    理念：清除和重置是紧密不可分的
+    特色：1.适应中文 2.基于最新主流浏览器
+    维护：玉伯(lifesinger@gmail.com), 正淳(ragecarrier@gmail.com)
+    */
+
+	/* 清除内外边距 */
+	body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+	dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+	pre, /* text formatting elements 文本格式元素 */
+	fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+	th, td { /* table elements 表格元素 */
+		margin: 0;
+		padding: 0;
+	}
+
+	/* 设置默认字体 */
+	body, samp,
+	button, input, select, textarea { /* for ie */
+		/*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+		font: 12px/1 'Microsoft Yahei', tahoma, arial, "Hiragino Sans GB", \5b8b\4f53; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+	}
+
+	h1 {
+		font-size: 18px; /* 18px / 12px = 1.5 */
+		font-weight: normal;
+	}
+
+	h2 {
+		font-size: 16px;
+		font-weight: normal;
+	}
+
+	h3 {
+		font-size: 14px;
+		font-weight: normal;
+	}
+
+	h4, h5, h6 {
+		font-size: 100%;
+		font-weight: normal;
+	}
+
+	address, cite, dfn, em, var {
+		font-style: normal;
+	}
+
+	/* 将斜体扶正 */
+	code, kbd, pre, tt {
+		font-family: "Courier New", Courier, monospace;
+	}
+
+	/* 统一等宽字体 */
+	small {
+		font-size: 12px;
+	}
+
+	/* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+	/* 重置列表元素 */
+	ul, ol {
+		list-style: none;
+	}
+
+	abbr[title], acronym[title] { /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+		border-bottom: 1px dotted;
+		cursor: help;
+	}
+
+	q:before, q:after {
+		content: '';
+	}
+
+	/* 重置表单元素 */
+	legend {
+		color: #000;
+	}
+
+	/* for ie6 */
+	fieldset, img {
+		border: none;
+	}
+
+	/* img 搭车：让链接里的 img 无边框 */
+	/* 注：optgroup 无法扶正 */
+	button, input, select, textarea {
+		font-size: 100%; /* 使得表单元素在 ie 下能继承字体大小 */
+	}
+
+	/* 重置表格元素 */
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	/* 重置 hr */
+	hr {
+		border: none;
+		height: 1px;
+	}
+
+	/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+	html {
+		overflow-y: scroll;
+	}
+
+	/* 清除浮动效果 */
+	.cl:after {
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+		clear: both;
+	}
+
+	.cl {
+		*zoom: 1;
+	}
+
+	/* 浮动设置 */
+	.fl {
+		float: left;
+		display: inline-block
+	}
+
+	.fr {
+		float: right;
+		display: inline-block
+	}
+
+	/* 全局框架宽度设定 */
+	.w940 {
+		width: 940px;
+	}
+
+	.w1200 {
+		width: 1200px;
+		position: relative;
+	}
+
+	.w1000 {
+		width: 1000px;
+		position: relative;
+	}
+
+	/* 内边距预设 */
+	.p5 {
+		padding: 5px;
+	}
+
+	.p10 {
+		padding: 10px;
+	}
+
+	.p15 {
+		padding: 15px;
+	}
+
+	.p20 {
+		padding: 20px;
+	}
+
+	.p25 {
+		padding: 25px;
+	}
+
+	.p30 {
+		padding: 30px;
+	}
+
+	.pl5 {
+		padding-left: 5px;
+	}
+
+	.pl10 {
+		padding-left: 10px;
+	}
+
+	.pl15 {
+		padding-left: 15px;
+	}
+
+	.pl20 {
+		padding-left: 20px;
+	}
+
+	.pl25 {
+		padding-left: 25px;
+	}
+
+	.pl30 {
+		padding-left: 30px;
+	}
+
+	.pr5 {
+		padding-right: 5px;
+	}
+
+	.pr10 {
+		padding-right: 10px;
+	}
+
+	.pr15 {
+		padding-right: 15px;
+	}
+
+	.pr20 {
+		padding-right: 20px;
+	}
+
+	.pr25 {
+		padding-right: 25px;
+	}
+
+	.pr30 {
+		padding-right: 30px;
+	}
+
+	.pt5 {
+		padding-top: 5px;
+	}
+
+	.pt10 {
+		padding-top: 10px;
+	}
+
+	.pt15 {
+		padding-top: 15px;
+	}
+
+	.pt20 {
+		padding-top: 20px;
+	}
+
+	.pt25 {
+		padding-top: 25px;
+	}
+
+	.pt30 {
+		padding-top: 30px;
+	}
+
+	.pb5 {
+		padding-bottom: 5px;
+	}
+
+	.pb10 {
+		padding-bottom: 10px;
+	}
+
+	.pb15 {
+		padding-bottom: 15px;
+	}
+
+	.pb20 {
+		padding-bottom: 20px;
+	}
+
+	.pb25 {
+		padding-bottom: 25px;
+	}
+
+	.pb30 {
+		padding-bottom: 30px;
+	}
+
+	/* 外边距预设 */
+	.mc {
+		margin: 0 auto;
+	}
+
+	.m5 {
+		margin: 5px;
+	}
+
+	.m10 {
+		margin: 10px;
+	}
+
+	.m15 {
+		margin: 15px;
+	}
+
+	.m20 {
+		margin: 20px;
+	}
+
+	.m25 {
+		margin: 25px;
+	}
+
+	.m30 {
+		margin: 30px;
+	}
+
+	.ml5 {
+		margin-left: 5px;
+	}
+
+	.ml10 {
+		margin-left: 10px;
+	}
+
+	.ml15 {
+		margin-left: 15px;
+	}
+
+	.ml20 {
+		margin-left: 20px;
+	}
+
+	.ml25 {
+		margin-left: 25px;
+	}
+
+	.ml30 {
+		margin-left: 30px;
+	}
+
+	.mr5 {
+		margin-right: 5px;
+	}
+
+	.mr10 {
+		margin-right: 10px;
+	}
+
+	.mr15 {
+		margin-right: 15px;
+	}
+
+	.mr20 {
+		margin-right: 20px;
+	}
+
+	.mr25 {
+		margin-right: 25px;
+	}
+
+	.mr30 {
+		margin-right: 30px;
+	}
+
+	.mt5 {
+		margin-top: 5px;
+	}
+
+	.mt10 {
+		margin-top: 10px;
+	}
+
+	.mt15 {
+		margin-top: 15px;
+	}
+
+	.mt20 {
+		margin-top: 20px;
+	}
+
+	.mt25 {
+		margin-top: 25px;
+	}
+
+	.mt30 {
+		margin-top: 30px;
+	}
+
+	.mt40 {
+		margin-top: 40px;
+	}
+
+	.mb5 {
+		margin-bottom: 5px;
+	}
+
+	.mb10 {
+		margin-bottom: 10px;
+	}
+
+	.mb15 {
+		margin-bottom: 15px;
+	}
+
+	.mb20 {
+		margin-bottom: 20px;
+	}
+
+	.mb25 {
+		margin-bottom: 25px;
+	}
+
+	.mb30 {
+		margin-bottom: 30px;
+	}
+
+	.mb40 {
+		margin-bottom: 40px;
+	}
+
+	/* 全局字体颜色设定 */
+	.a12 {
+		color: #121212;
+	}
+
+	.a333 {
+		color: #333;
+	}
+
+	.a56 {
+		color: #565656;
+	}
+
+	.a78 {
+		color: #787878;
+	}
+
+	.a999 {
+		color: #999;
+	}
+
+	.accc {
+		color: #ccc;
+	}
+
+	.af60 {
+		color: #f60;
+	}
+
+	.af90 {
+		color: #f90;
+	}
+
+	.afff {
+		color: #fff;
+	}
+
+	.ablue {
+		color: #09F;
+	}
+
+	.agreen {
+		color: #0C0;
+	}
+
+	.af00 {
+		color: #f00;
+	}
+
+	.ahf60:hover {
+		color: #f60;
+	}
+
+	/* 全局字体大小 */
+	.f13 {
+		font-size: 13px;
+	}
+
+	.f14 {
+		font-size: 14px;
+	}
+
+	.f15 {
+		font-size: 15px;
+	}
+
+	.f16 {
+		font-size: 16px;
+	}
+
+	.f18 {
+		font-size: 18px;
+	}
+
+	.f20 {
+		font-size: 20px;
+	}
+
+	.f22 {
+		font-size: 22px;
+	}
+
+	.f24 {
+		font-size: 24px;
+	}
+
+	.f30 {
+		font-size: 30px;
+	}
+
+	.f36 {
+		font-size: 36px;
+	}
+
+	/*全局行高调用*/
+	.l20 {
+		line-height: 20px;
+	}
+
+	.l24 {
+		line-height: 24px;
+	}
+
+	.l28 {
+		line-height: 28px;
+	}
+
+	.l30 {
+		line-height: 30px;
+	}
+
+	/*全局字体调用*/
+	.fa {
+		font-family: arial;
+	}
+
+	.tc {
+		text-align: center;
+	}
+
+	.bgfff {
+		background: #fff;
+	}
+</style>
+
+<div id="wrap" class="w1200 cl mc">
+	<div class="page_title mt20 mb20 cl">
+		<p class="f18 af60 fl">理财中心<span class="f14 a999 ml10">投资简单，收益稳定</span></p>
+		<a id="my_licai" href="{:U('Money/log')}" target="_blank" class="af60 f13 fr cl">
+			<span class="fl">理财记录</span>
+		</a>
+	</div>
+
+	<div class="select_wrap cl">
+		<div class="select_list f14">
+			<dl class="cl" style="border:none;">
+				<dt class="fl">理财币种：</dt>
+				<dd class="first"><a href="{:U('Money/index',array('type'=>$type))}" <empty name="coinname">class="on"</empty> >全部</a></dd>
+				<volist name="coin_type" k="key" id="vo">
+					<dd><a href="{:U('Money/index',array('type'=>$type,'coinname' => $key))}"
+						<eq name="coinname" value="$key">class="on"</eq>
+						>{$vo}</a></dd>
+				</volist>
+			</dl>
+			<dl class="cl" style="border:none;">
+				<dt class="fl">理财类型：</dt>
+				<dd class="first"><a href="{:U('Money/index',array('coinname' => $coinname))}"  <empty name="type">class="on"</empty> >全部</a></dd>
+				<dd><a href="{:U('Money/index',array('type'=>1,'coinname' => $coinname))}"
+					<eq name="type" value="1">class="on"</eq> >定期</a></dd>
+				<dd><a href="{:U('Money/index',array('type'=>2,'coinname' => $coinname))}"
+					<eq name="type" value="2">class="on"</eq> >活期</a></dd>
+			</dl>
+		</div>
+	</div>
+	<div class="invest_wrap mt20">
+		<volist name="list" id="vo">
+			<div class="item cl car pt30 pb30">
+				<i class="iconfont afff f22 ml20 fl mark" style="background:none;">
+					<img src="__UPLOAD__/coin/{:C('coin')[$vo['coinname']]['img']}" style="width: 30px; vertical-align: -8px;margin-right: 5px;">{$vo['name']}</a>
+					</i>
+
+
+				<div class="item_info ml20 fl">
+					<div class="item_i_t cl"><a href="#" class="a12 ahf60 f18">
+						{$vo['name']}</a>
+						<span class="af60 ml30">开启时间:2016-04-23 00:00:00</span>
+					</div>
+
+					<ul class="mt25 cl" id="pro_num">
+						<li class="fl f13 a78 first">
+							<p>周期性利率</p>
+
+							<p class="mt10"><span class="f24 af60">{$vo['fee']|NumToStr}</span> % </p>
+						</li>
+						<li class="fl tc f13 a78" style="width:100px;">
+							<p>理财总量</p>
+
+							<p class="mt10"><span class="f24 af60">{$vo['num']}</span> </p>
+						</li>
+
+						<li class="fl tc f13 a78" style="width:100px;">
+							<p>已理财量</p>
+
+							<p class="mt10"><span class="f24 a12">{$vo['deal']}</span> </p>
+						</li>
+
+						<li class="fl tc f13 a78">
+							<p>理财周期</p>
+
+							<p class="mt20"><b>{$vo['tian']}</b></p>
+						</li>
+
+						<li class="fl tc f13 a78" style="width:90px;">
+							<p>投资人数</p>
+
+							<p class="mt10"><span class="f24 af60">{$vo['times']}</span> 人</p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="pro_bar_btm fr">
+					<div class="pro-bar cl pb20">
+						<div class="process-bar fl" style=" margin-top:3px;">
+							<div class="process-bar-hover" style="width:{$vo['bili']}%"></div>
+						</div>
+						<p class="af60 fl f14 ml10">已完成：{$vo['bili']}%</p>
+					</div>
+					<div class="rest a56 f13 fl mt15">
+						<p>剩余可投资金额</p>
+
+						<p class="mt10"><span class="f16 af60 ">{$vo['shengyu']}</span> 元</p>
+					</div>
+					<a class="ui-btm ui-btm-f60 ui-btm-w120 afff fr f14" href="javascript:licai_run('{$vo[\'id\']}')"> 立即投标</a></div>
+			</div>
+		</volist>
+	</div>
+	<div class="pages" style="margin: 10px 0 20px 0;">{$page}</div>
+</div>
+
+<div  id="licai_mask"  class="all_mask_loginbox" style="position: fixed;border: 1px solid #FFF7F7;top: 313px; display: none;">
+	<div id="licai_title" class="login_title pl20">标题</div>
+	<form id="form-login" class="mask_wrap login-fb">
+		<div class="login_text zin90">
+			<div class="mask_wrap_title">理财币种：</div>
+			<input id="licai_coinname"  name="username" type="text" value="" readonly>
+		</div>
+
+		<div class="login_text zin90">
+			<div class="mask_wrap_title">可用余额：</div>
+			<input id="licai_yue" name="username" type="text" value="12563.222" readonly>
+		</div>
+
+		<div class="login_text zin90">
+			<div class="mask_wrap_title">投入数量：</div>
+			<input  id="licai_jine" name="licai_jine" type="text" value="">
+
+		</div>
+
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">交易密码：</div>
+			<input id="paypassword" name="paypassword" type="password">
+		</div>
+
+		<div class="login_button">
+			<input type="button" value="确定" onclick="licai_up();">
+		</div>
+	</form>
+	<div class="mask_wrap_close"  onclick="wrapClose()"></div>
+</div>
+
+
+<script>
+	console.log($(window).height());
+	$('#wrap').css('min-height',$(window).height() - 320);
+	//菜单高亮
+	$('#money_box').addClass('active');
+
+	var cur_id = '';
+	function licai_run(id){
+		$.get("/Money/info/id/" + id,function(ret){
+			cur_id = id;
+			console.log(ret);
+			if(ret.status == 1){
+				var money = ret.info.Money;
+				$('#licai_title').html(money.name);
+				$('#licai_coinname').val(money.coinname);
+				$('#licai_yue').val(money.yue);
+				$('#licai_mask').show();
+			}else{
+				layer.msg('操作错误');
+			}
+		},'json')
+	}
+
+	function licai_up(){
+		var licai_jine = $('#licai_jine').val();
+		var paypassword = $('#paypassword').val();
+		if(!licai_jine || typeof licai_jine == "undefined" || licai_jine <0){
+			layer.tips('数量不正确', '#licai_jine', {
+				tips: [1, '#0FA6D8']
+			});
+		}
+
+		if(!paypassword || typeof paypassword == "undefined"){
+			layer.tips('交易密码必须填写', '#paypassword', {
+				tips: [1, '#0FA6D8']
+			});
+		}
+
+		$.post("/Money/index",{id:cur_id,num:licai_jine,paypassword:paypassword},function(ret){
+			console.log(ret);
+			if(ret.status == 1){
+				layer.msg(ret.info);
+				window.setTimeout("window.location.reload()",1000);
+			}else{
+				layer.msg(ret.info);
+			}
+		},'json')
+
+	}
+
+
+</script>
+<include file="Public:footer"/>

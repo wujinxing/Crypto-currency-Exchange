@@ -1,0 +1,85 @@
+<include file="Public:header" />
+<div class="wrapbody">
+	<div class="main">
+		<div class="myright" style="width: 1068px;">
+			<div class="wraphtml">
+				<div class="f_title clearfix">
+					<div class="f_title_span left">
+						<span class="">
+							<a href="/Shop">在线购物</a>
+						</span>
+						<span class="current">
+							<i></i>
+							<a href="/Shop/log">购物管理</a>
+						</span>
+						<span class="">
+							<i></i>
+							<a href="/Shop/addr">收货地址</a>
+						</span>
+						
+						
+						
+					</div>
+				</div>
+				<notempty name="C['shop_text_log']">
+				<div class="mytips">
+					<h6 style="color: #ff8000;">温馨提示</h6>
+					{$C['shop_text_log']|htmlspecialchars_decode}
+				</div>
+				</notempty>
+				<div class="f_body mt5">
+					<div class="f_body_main">
+						<div class="f_tab_body">
+							<div>
+								<table class="f_table" id="investLog_content">
+									<thead>
+										<tr>
+											<th>购买时间</th>
+											<th>购买商品</th>
+											<th>商品价格</th>
+											<th>购买数量</th>
+											<th>总计金额</th>
+											<th>付款方式</th>
+												<th>行情价格</th>		
+											<th class="">状态</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<volist name="list" id="vo">
+										<tr>
+										
+					
+						<td>{$vo.addtime|addtime}</td>
+						<td><a href="{:U('Shop/view?id='.$vo['shopid'])}">查看商品</a></td>						
+						<td>{$vo['price']}</td>
+				
+						<td>{$vo['num']}</td>
+						<td>{$vo['mum']}</td>
+						<td>{$vo['coinname']}</td>	
+						<td>{$vo['new_price']}/CNY</td>	
+								
+						<td><eq name="vo.status" value="1">已完成</eq>
+							<eq name="vo.status" value="2">已发货</eq>
+							<eq name="vo.status" value="0">未发货</eq>
+						
+						</td>
+										</tr>
+										</volist>
+									</tbody>
+								</table>
+								<div class="pages">{$page}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	//顶部菜单高亮
+	$('#menu_top_index').addClass('current');
+
+</script>
+<include file="Public:footer" />

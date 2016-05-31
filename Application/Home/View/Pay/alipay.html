@@ -1,0 +1,125 @@
+<include file="Public:header" />
+<div class="wrapper">
+	<div class="register" style="border-radius: 15px; margin-bottom: 20px;">
+		<h3 style="color: #ff7420; font-size: 30px; text-align: center; padding-top: 50px;">支付宝充值订单详情</h3>
+		<table style="">
+			<tbody>
+				<tr>
+					<th align="right" style="font-size: 14px;">订单时间：</th>
+					<td><div class="formbody" style="text-align: left; font-size: 18px;">
+							<span>{$mycz.addtime|addtime}</span>
+						</div></td>
+				</tr>
+				<tr>
+					<th align="right" style="font-size: 14px;">订单编号：</th>
+					<td><div class="formbody" style="text-align: left; font-size: 18px;">
+							<span id="invite-input">{$mycz.tradeno}</span>
+							<input type="button" value="复 制" data-clipboard-target="invite-input" class="inviteCopyButton" id="copy_button1" style="height: 22px; width: 60px; background: #0096e0; border-radius: 8px; color: #fff; margin-left: 10px; vertical-align: top;">
+						</div></td>
+				</tr>
+				<tr>
+					<th align="right" style="font-size: 14px;">充值金额：</th>
+					<td><div class="formbody" style="text-align: left; font-size: 18px; color: #ff8000;">
+							￥
+							<span id="invite-inputa" style="width: 150px;">{$mycz.num}</span>
+							<input type="button" value="复 制" data-clipboard-target="invite-inputa" class="inviteCopyButton" id="copy_button2" style="height: 22px; width: 60px; background: #0096e0; border-radius: 8px; color: #fff; margin-left: 10px; vertical-align: top;">
+						</div></td>
+				</tr>
+				<tr>
+					<th align="right" style="font-size: 14px;">官方账号：</th>
+					<td><div class="formbody" style="text-align: left; font-size: 18px;width: 800px;">
+							<span id="invite-inputaa">{$C['contact_alipay']}</span>
+							<input type="button" value="复 制" data-clipboard-target="invite-inputaa" class="inviteCopyButton" id="copy_button3" style="height: 22px; width: 60px; background: #0096e0; border-radius: 8px; color: #fff; margin-left: 10px; vertical-align: top;">
+						请核对官方充值账户名:苏州青川信息科技有限公司</div></td>
+				</tr>
+				<notempty name="C['contact_alipay_img']">
+				<tr>
+					<th align="right" style="font-size: 14px;">扫码付款：</th>
+					<td><hr>
+						<div class="formbody" style="text-align: left; font-size: 18px; width: 500px; margin-top: 20px;">
+							<img src="__UPLOAD__/public/{$C['contact_alipay_img']}" width="200" height="200" style="float: left;">
+							<p style="padding-left: 240px; color: #F00; line-height: 40px;">扫码付款说明：</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">一·用手机支付宝扫左边的二维码</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">二·点击手机支付宝的转账按钮</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">三·在金额里面填写上边的充值金额</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">四·在备注里面填写上边的订单编号</p>
+							<p style="padding-left: 240px; color: #F00; line-height: 40px; font-size: 14px;">提醒：正确填写金额和备注可以立即到账</p>
+						</div></td>
+				</tr>
+				</notempty>
+				<tr>
+					<th align="right" style="font-size: 14px;">网页付款：</th>
+					<td><hr>
+						<div class="formbody" style="text-align: left; font-size: 18px; width: 500px;">
+							<img src="__UPLOAD__/public/alipay.png" width="200" height="180" style="float: left;">
+							<p style="padding-left: 240px; color: #F00; line-height: 40px;">网页付款说明：</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">
+								一·登录支付宝官方网站
+								<a class="movesay_btn" id="btn-submit" style="font-size: 12px; padding: 0px 5px; margin-left: 10px;" href="http://www.alipay.com/" target="_blank">登录支付宝</a>
+							</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">二·点击转账按钮出现如左图这样的界面</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">三·在收款人里面填写上边的官方账号</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">四·在付款金额里面填写上边的充值金额</p>
+							<p style="padding-left: 240px; color: #0096e0; line-height: 24px; font-size: 14px;">五·在备注里面填写上边的订单编号</p>
+							<p style="padding-left: 240px; color: #F00; line-height: 40px; font-size: 14px;">提醒：正确填写金额和备注可以立即到账</p>
+						</div></td>
+				</tr>
+				<tr>
+					<th align="right"></th>
+					<td><hr> <span style="float: left; margin-top: 50px;">
+							付款成功
+							<a href="{:U('Finance/mycz')}" target="_blank">立即查看</a>
+						</span></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th align="right"></th>
+					<td><span style="float: left; margin-top: 10px;">
+							遇到问题
+							<a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$C['contact_qq'][0]}&amp;site=qq&amp;menu=yes" target="_blank">联系客服</a>
+						</span></td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Home/js/ZeroClipboard.min.js"></script>
+<script>
+	var client=new ZeroClipboard(document.getElementById("copy-button"));
+	client.on("ready",function(readyEvent){
+		client.on("aftercopy",function(event){
+			event.target.style.display="none";
+		});
+	});
+	ZeroClipboard.config({swfPath:'__PUBLIC__/Home/js/ZeroClipboard.swf'});
+	var clip=new ZeroClipboard(document.getElementById("copy"));
+	$(document).ready(function(){
+		var clip1=new ZeroClipboard(document.getElementById("copy_button1"));
+		var clip2=new ZeroClipboard(document.getElementById("copy_button2"));
+		var clip3=new ZeroClipboard(document.getElementById("copy_button3"));
+		clip1.on("copy",function(e){
+			layer.msg('复制成功！',{icon:1});
+		});
+		clip2.on("copy",function(e){
+			layer.msg('复制成功！',{icon:1});
+		});
+		clip3.on("copy",function(e){
+			layer.msg('复制成功！',{icon:1});
+		});
+		$(".wlb_tsina").click(function(){
+			window.open("http://v.t.sina.com.cn/share/share.php?url="+_share_url+"&title="+_share_content);
+		});
+		$(".wlb_douban").click(function(){
+			window.open("http://www.douban.com/recommend/?url="+_share_url+"&title="+_share_content);
+		});
+		$(".wlb_qzone").click(function(){
+			window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+_share_url+"&title="+_share_title+"&pics="+_share_pic+"&desc="+_share_content);
+		});
+	});
+</script>
+<script>
+	//顶部菜单高亮
+	$('#menu_top_finance').addClass('current');
+</script>
+<include file="Public:footer" />

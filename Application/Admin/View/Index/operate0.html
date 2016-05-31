@@ -1,0 +1,72 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">运营统计</span>
+		</div>
+
+		<div class="tab-wrap">
+
+			<div class="tab-content">
+				<form id="form" action="" method="post" class="form-horizontal">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">注册会员 :</td>
+									<td></td>
+									<td class="item-note">{$data.user|default="0"}</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">充值统计 :</td>
+									<td></td>
+									<td class="item-note">{$data.mycz|default="0"}</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">提现统计 :</td>
+									<td></td>
+									<td class="item-note">{$data.mytx|default="0"}</td>
+								</tr>
+
+								<volist name="data['my']" id="v">
+
+								<tr class="controls">
+									<td class="item-label">{$v['title']} :</td>
+									<td></td>
+									<td class="item-note">{$v['val']}</td>
+								</tr>
+
+
+								</volist>
+
+
+
+							</table>
+						</div>
+					</div>
+					<br>
+
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function() {
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		//主导航高亮
+		$('.index-box').addClass('current');
+		//边导航高亮
+		$('.index-operate').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,384 @@
+<div id="footer">
+
+<volist name="C['footer']['a']" id="vo">
+
+	<a href="{$vo['url']}">{$vo['title']}</a>
+
+	|
+
+</volist>
+
+
+
+
+
+	<p style="margin-top: 5px;text-align: center;">
+
+		Copyright © 2016
+
+		<a href="/">{$C['web_name']}交易平台 </a>
+
+		All Rights Reserved.Powered by苏州青川信息科技有限公司 | 工商注册号：320594000364904
+
+	<a href="http://www.miibeian.gov.cn/">{$C['web_icp']}</a></p>
+
+	<p class="clear1" id="ut646" style="margin-top: 10px;text-align: center;">&nbsp;</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--代码部分begin-->
+
+<div class="footer_bottom"></div>
+
+<div id="all_mask" class="all_mask" style="height: 0px; display: none;"></div>
+
+<div class="all_mask_loginbox" style="top: 313px; display: none;">
+
+	<div class="login_title pl20">登录</div>
+
+	<form id="form-login" class="mask_wrap login-fb">
+
+		<div class="login_text zin90">
+
+			<div class="mask_wrap_title">账号：</div>
+
+			<input id="login_username" name="username" type="text" placeholder="请输入手机号/会员名">
+
+		</div>
+
+		<div class="login_text zin80">
+
+			<div class="mask_wrap_title">密码：</div>
+
+			<input id="login_password" name="password" type="password" placeholder="请输入登录密码">
+
+		</div>
+
+		<div class="login_text zin70" id="ga-box">
+
+			<div class="mask_wrap_title">验证码：</div>
+
+			<input id="login_verify" name="username" type="text" style="width: 105px; box-shadow: none;" placeholder="请输入验证码">
+
+			<img class="codeImg reloadverify" src="" title="换一张" onclick="this.src='/Verify/code?t='+Math.random()">
+
+		</div>
+
+		<div class="login_button">
+
+			<input type="button" value="登录" onclick="upLogin();">
+
+		</div>
+
+		<div class="login-footer wwxwwx" style="border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+
+			<!--<a target="_blank" href="/"><img src="__PUBLIC__/Home/images/qq2.png" style="vertical-align: text-bottom; padding-right: 5px;">zzQQ登录</a>-->
+
+
+
+			<span style="color: #ccc; float: right; margin-right: 25px;">
+
+			<a style="font-size: 12px;" href="{:U('Login/register')}">免费注册</a>｜<a href="{:U('Login/findpwd')}" style="font-size: 12px;">忘记密码</a></span>
+
+		</div>
+
+	</form>
+
+	<div class="mask_wrap_close"  onclick="wrapClose()"></div>
+
+</div>
+
+<script>
+
+
+
+	$('input').focus(function(){
+
+		var t=$(this);
+
+		if(t.attr('type')=='text'||t.attr('type')=='password')
+
+			t.css({'box-shadow':'0px 0px 3px #1583fb','border':'1px solid #1583fb','color':'#333' });
+
+		if(t.val()==t.attr('placeholder'))
+
+			t.val('');
+
+	});
+
+	$('input').blur(function(){
+
+		var t=$(this);
+
+		if(t.attr('type')=='text'||t.attr('type')=='password')
+
+			t.css({'box-shadow':'none','border':'1px solid #e1e1e1','color':'#333' });
+
+		if(t.attr('type')!='password'&&!t.val())
+
+			t.val(t.attr('placeholder'));
+
+	});
+
+
+
+
+
+ $(function(){
+
+  $("#floatTools").hover(function(){
+
+   $('#divFloatToolsView').animate({width:'show',opacity:'show'},100,function(){
+
+    $('#divFloatToolsView').show();
+
+   });
+
+   $('#aFloatTools_Show').hide();
+
+   $('#aFloatTools_Hide').show();
+
+  },function(){
+
+   $('#divFloatToolsView').animate({width:'hide',opacity:'hide'},100,function(){
+
+    $('#divFloatToolsView').hide();
+
+   });
+
+   $('#aFloatTools_Show').show();
+
+   $('#aFloatTools_Hide').hide();
+
+  });
+
+  $("#divFloatToolsView").height(36+$("#jisuan_qq li").length*40);
+
+ });
+
+</script>
+
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.cookies.2.2.0.js"></script>
+
+<script>
+
+
+
+function expect(){
+
+	layer.msg('暂未上线，敬请期待!',{icon:6});	
+
+}
+
+$(function(){
+
+	$.getJSON("/Ajax/getJsonMenu?t="+Math.random(),function(data){
+
+		if(data){
+
+			var list='';
+
+			for(var i in data){
+
+				list+='<dd><a href="/Trade/index/market/'+data[i]['name']+'"><img src="/Upload/coin/'+data[i]['img']+'" style="width: 18px; margin-right: 5px;">'+data[i]['title']+'</a></dd>';
+
+			}
+
+			$("#menu_list_json").html(list);
+
+		}
+
+	});
+
+});
+
+
+
+
+
+
+
+
+
+$('#trade_box').hover(function(){$('.deal_list').show()},function(){$('.deal_list').hide()});
+
+$('.deal_list').hover(function(){$('.deal_list').show()},function(){$('.deal_list').hide()});
+
+
+
+
+
+$('#user-finance').hover(function(){
+
+	$('.mywallet_list').show();
+
+},function(){$('.mywallet_list').hide()});
+
+
+
+
+
+
+
+
+
+
+
+var cookieValue=$.cookies.get('cookie_username');
+
+if(cookieValue!=''&&cookieValue!=null){
+
+	$("#login_username").val(cookieValue);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+function loginpop(){
+
+	$('.all_mask').css({'height': $(document).height()});
+
+	$('.all_mask').show();
+
+	$('.all_mask_loginbox').show();
+
+	$(".reloadverify").click();
+
+}
+
+
+
+var is_login = {$Think.session.userId};
+
+if(window.location.hash == '#login'){
+
+	if(!is_login){
+
+		loginpop();
+
+	}
+
+}
+
+
+
+if(is_login){
+
+	$.getJSON("/Ajax/allfinance?t="+Math.random(),function(data){
+
+		
+
+		$('#user_finance').html(data);
+
+	});
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function wrapClose(){
+
+	$('.all_mask').hide();
+
+	$('.all_mask_loginbox').hide();	
+
+}
+
+
+
+function upLogin(){
+
+	var username=$("#login_username").val();
+
+	var password=$("#login_password").val();
+
+	var verify=$("#login_verify").val();
+
+	if(username==""||username==null){
+
+		layer.tips('请输入用户名','#login_username',{tips:3});
+
+		return false;
+
+	}
+
+	if(password==""||password==null){
+
+		layer.tips('请输入登录密码','#login_password',{tips:3});
+
+		return false;
+
+	}
+
+	if(verify==""||verify==null){
+
+		layer.tips('请输入验证码','#login_verify',{tips:3});
+
+		return false;
+
+	}
+
+	$.post("{:U('Login/submit')}",{username:username,password:password,verify:verify},function(data){
+
+		if(data.status==1){
+
+			$.cookies.set('cookie_username',username);
+
+			layer.msg(data.info,{icon:1});
+
+			window.location='/User';
+
+		}else{
+
+			//刷新验证码
+
+			$(".reloadverify").click();
+
+			layer.msg(data.info,{icon:2});
+
+			if(data.url){
+
+				window.location=data.url;
+
+			}
+
+		}
+
+	},"json");
+
+}
+
+</script>
+
+</body>
+
+</html>

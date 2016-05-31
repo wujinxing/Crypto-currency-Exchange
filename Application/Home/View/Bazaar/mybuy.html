@@ -1,0 +1,69 @@
+<include file="Public:header" />
+<div class="wrapbody">
+	<div class="main">
+		<div class="myright" style="width: 1168px;">
+			<div class="wraphtml">
+				<div class="f_title clearfix">
+					<div class="f_title_span left">
+						<span class="">
+							<a href="/Bazaar">集市交易</a>
+						</span>
+						<span class="">
+							<a href="/Bazaar/mysell">我的委托卖出</a>
+						</span>
+					
+						<span class="">
+							<a href="/Bazaar/whole">全站成交记录</a>
+						</span>
+						<span class="current">
+							<i></i>
+							<a href="/Bazaar/mybuy">我的买入记录</a>
+						</span>
+					</div>
+				</div>
+				<notempty name="C['bazaar_text_my']">
+				<div class="mytips">
+					<h6 style="color: #ff8000;">温馨提示</h6>
+					{$C['bazaar_text_my']}
+				</div>
+				</notempty>
+				<div class="f_body">
+					<table class="f_table" id="investLog_content">
+						<thead>
+							<tr>
+								<th id="sublist-grid_c0"><select name="type" id="coin_selectTest">
+										<volist name=":C('coin_list')" id="vo">
+										<option value="{$key}"<eq name="coin" value="$key">selected</eq>>{$vo['title']}</option>
+										</volist>
+								</select></th>
+								<th id="sublist-grid_c1">成交数量</th>
+								<th id="sublist-grid_c2">单价</th>
+								<th id="sublist-grid_c3">总金额</th>
+								<th id="sublist-grid_c3">总佣金</th>
+								<th id="sublist-grid_c4">成交时间</th>
+							</tr>
+						</thead>
+						<tbody>
+							<volist name="list" id="vo">
+							<tr>
+								<td>{:C('coin')[$vo['coin']]['title']}</td>
+								<td>{$vo['num']}</td>
+								<td>{$vo['price']}</td>
+								<td>{$vo['mum']}</td>
+								<td>{$vo['fee']}}</td>
+								<td>{$vo['addtime']|addtime}</td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+					<div class="pages">{$page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	//顶部菜单高亮
+	$('#menu_top_bazaar').addClass('current');
+</script>
+<include file="Public:footer" />

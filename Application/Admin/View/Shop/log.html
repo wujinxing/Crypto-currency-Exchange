@@ -1,0 +1,124 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">{$Title}列表</span>
+			<notempty name="name">
+				<span class="h2-title">>><a href="{:U('ShopLog/index')}">{$Title}列表</a></span>
+			</notempty>
+		</div>
+
+		<div class="cf">
+			<div class="fl">
+			</div>
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1">
+						<input type="text" name="name" class="search-input" value="{$name}" placeholder="请输入名称">
+						<a class="sch-btn" href="javascript:;" id="search"><i class="btn-search"></i></a>
+					</form>
+					<script>
+						//搜索功能
+						$(function() {
+							$('#search').click(function() {
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function(e) {
+							if (e.keyCode === 13) {
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+					<tr>
+						<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+						<th class="">ID</th>
+						<th>购买用户</th>
+						<th>购买时间</th>
+						<th>购买商品</th>						
+						<th>商品价格</th>
+						<th>购买数量</th>								
+						<th>总计金额</th>	
+							<th>付款方式</th>
+						<th>行情价格</th>							
+						<th class="">状态</th>
+						<th class="">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<notempty name="list">
+					<volist name="list" id="vo">
+					<tr>
+						<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+						<td>{$vo.id}</td>
+						<td>{:get_user($vo['userid'],'username')}</td>
+						<td>{$vo.addtime|addtime}</td>
+						<td><a href="{:U('Shop/edit?id='.$vo['shopid'])}">查看商品</a></td>						
+						<td>{$vo['price']}</td>
+						
+						<td>{$vo['num']}</td>
+						<td>{$vo['mum']}</td>
+						<td>{$vo['coinname']}</td>
+						<td>{$vo['new_price']}</td>
+						
+						<td><eq name="vo.status" value="1">已完成</eq>
+							<eq name="vo.status" value="2">已发货</eq>
+							<eq name="vo.status" value="0">未发货</eq>
+						
+						</td>
+						<td>
+						<eq name="vo.status" value="1">已完成 </eq>
+						<eq name="vo.status" value="2">已发货 <a href="{:U('Shop/log_status?method=resume&id='.$vo['id'])}" class="ajax-get">已完成 </a> | </eq>
+						<eq name="vo.status" value="0">未发货 <a href="{:U('Shop/log_status?method=fahuo&id='.$vo['id'])}" class="ajax-get">已发货 </a> | </eq>												
+							
+							
+							<a class=""  onclick="Update('{$vo['addr']}')">收货地址</a>
+						</td>
+					</tr>
+					</volist>
+					<else />
+					<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+					</notempty>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		//主导航高亮
+		$('.shop-box').addClass('current');
+		//边导航高亮
+		$('.shop-log').addClass('current');
+		//边导航高亮
+		$('.left-shop').show();
+	});
+</script>
+
+<script>
+	function Update(aa){
+		layer.alert(aa, {title: '收货地址'});
+
+	}
+</script>
+
+
+
+
+<!-- /内容区 -->
+<include file="Public:footer" />

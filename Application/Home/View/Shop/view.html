@@ -1,0 +1,198 @@
+<include file="Public:header"/>
+<div class="autobox">
+    <div class="wrapbody">
+        <div class="main">
+            <div class="wraphtml" style="margin-top: 20px;">
+                <div class="f_title clearfix">
+                    <div class="f_title_span left">
+						<span class="current">
+							<i></i>
+							<a href="/Shop">在线购物</a>
+						</span>
+						<span class="">
+							<a href="/Shop/log">购物管理</a>
+						</span>
+						<span class="">
+							<i></i>
+							<a href="/Shop/addr">收货地址</a>
+						</span>
+                    </div>
+                </div>
+
+
+                <notempty name="C['shop_text_view']">
+                    <div class="mytips">
+                        <h6 style="color: #ff8000;">温馨提示</h6>
+                        {$C['shop_text_view']|htmlspecialchars_decode}
+                    </div>
+                </notempty>
+                <div class="showContent margin clearfix">
+                    <div class="gallery">
+                        <div id="detail">
+                            <div class="jqzoom_pm">
+                                <img src="__UPLOAD__/shop/{$data.img}">
+                            </div>
+                        </div>
+                    </div>
+                    <form action="javascript:addToCart(33)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
+                        <div class="property">
+                            <h2>{$data.name}</h2>
+
+                            <div class="ProductD clearfix">
+                                <div class="productDL">
+
+                                    <dl>
+                                        <dt>市&nbsp;&nbsp;场&nbsp;&nbsp;价：</dt>
+                                        <dd>
+                                            <strong style="text-decoration: line-through;">￥{$data.price_shi}</strong>
+                                        </dd>
+                                    </dl>
+
+
+                                    <dl>
+                                        <dt>商品价格：</dt>
+                                        <dd>
+                                            <span id="ECS_SHOPPRICE">￥{$data.price}</span>
+                                        </dd>
+                                    </dl>
+
+                                    <dl>
+                                        <dt>总&nbsp;&nbsp;库&nbsp;&nbsp;存：</dt>
+                                        <dd>
+                                            <strong>{$data.num}件</strong>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>累计售出：</dt>
+                                        <dd>
+                                            <strong>{$data.deal}件</strong>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>上架时间：</dt>
+                                        <dd>{$data.addtime|addtime}</dd>
+                                    </dl>
+
+
+                                    <dl>
+                                        <dt>购买数量：</dt>
+                                        <dd>
+                                            <input type="text" class="cztxinput" id="num" value=""
+                                                   style="padding: 5px;">
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>付款方式：</dt>
+                                        <dd>
+                                            <select name="type" id="coin_type" style=" height: 28px;width: 194px;">
+                                                <volist name="coin_list" id="vo">
+                                                    <in name="key" value="$data['coinlist']">
+
+                                                        <option value="{$key}">{$vo.name}</option>
+
+
+                                                    </in>
+
+                                                </volist>
+                                            </select>
+
+
+                                            <volist name="coin_list" id="vo">
+                                                <span class="coin_price_{$i}  coin_price " style="display: none;"
+                                                      id="coin_price_{$key}">1{$vo.name}等于   {$vo.price} 人民币</span>
+                                            </volist>
+
+
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>交易密码：</dt>
+                                        <dd>
+                                            <input type="password" class="cztxinput" id="paypassword" value=""
+                                                   style="padding: 5px;">
+                                            <a href="/Login/findpaypwd.html" class="reg_floatr">忘记密码?</a></dd>
+
+                                    </dl>
+                                    <dl>
+                                        <dt>&nbsp;</dt>
+                                        <dd>
+                                            <input type="button" class="btn-cztx" id="online_bank" onclick="Update()"
+                                                   value="立即购买" title="立即购买">
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="clearfix">
+                    <div class="mainListRight fr" id="status1">
+                        <div class="productContent">
+                            <div class="attributes-list"></div>
+                            <h3 class="techanPdcontent">
+                                <strong>产 品 介 绍</strong>
+                                <span>Product Ovierview</span>
+                            </h3>
+
+                            <div class="techanProducts clearfix"></div>
+                            <div class="description">{$data.content}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+
+
+    $(function () {
+        //$(".coin_price_1").show();
+
+
+    });
+
+    $("#coin_type").change(function () {
+        var coin_type = $("#coin_type option:selected").val();
+
+        $(".coin_price").hide();
+
+        if (coin_type != 'cny') {
+
+            $("#coin_price_" + coin_type).show();
+        }
+
+
+    });
+</script>
+
+
+<script>
+    function Update() {
+        var type = $("#coin_type option:selected").val();
+
+
+        $.post("{:U('Shop/view')}", {
+            id: "{$data['id']}",
+            type: type,
+            num: $('#num').val(),
+            paypassword: $('#paypassword').val()
+        }, function (data) {
+            if (data.status == 1) {
+                layer.msg(data.info, {icon: 1});
+                window.setTimeout("window.location='{:U('Shop/log')}'", 1000);
+            } else {
+                layer.msg(data.info, {icon: 2});
+                if (data.url) {
+                    window.setTimeout("window.location='" + data.url + "'", 3000);
+                }
+            }
+        }, 'json');
+    }
+</script>
+<script>
+    //顶部菜单高亮
+    $('#menu_top_index').addClass('current');
+</script>
+<include file="Public:footer"/>

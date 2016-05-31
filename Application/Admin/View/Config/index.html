@@ -1,0 +1,125 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">基本配置</span>
+		</div>
+
+		<div class="tab-wrap">
+			<div class="tab-content">
+				<form id="form" action="{:U('Config/save')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">网站名称 :</td>
+									<td><input type="text" class="form-control" name="web_name" value="{$C['web_name']}"></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站标题 :</td>
+									<td><input type="text" class="form-control" name="web_title" value="{$C['web_title']}"></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站logo :</td>
+									<td><input type="file" class="form-control" name="web_logo" value="{$C['web_logo']}" style="margin-bottom: 20px;"> <span >
+											<notempty name="C['web_logo']">
+											<img src="__UPLOAD__/public/{$C['web_logo']}" width="300" height="60" style="margin-bottom: 20px;">
+											</notempty>
+										</span></td>
+									<td class="item-note">250px*34px</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站小logo :</td>
+									<td><input type="file" class="form-control" name="web_llogo_small" value="{$C['web_llogo_small']}" style="margin-bottom: 20px;"> <span >
+											<notempty name="C['web_llogo_small']">
+												<img src="__UPLOAD__/public/{$C['web_llogo_small']}" width="300" height="60" style="margin-bottom: 20px;">
+											</notempty>
+										</span></td>
+									<td class="item-note">交易界面显示  168px*22px</td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label">网站关键字 :</td>
+									<td><textarea name="web_keywords" class="form-control" style="height: 80px;">{$C['web_keywords']}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站描叙 :</td>
+									<td><textarea name="web_description" class="form-control" style="height: 80px; margin-top: 24px;">{$C['web_description']}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站状态 :</td>
+									<td><select name="web_close" class="input-small" style="width: 120px">
+											<option value="1"<eq name="C['web_close']" value="1">selected</eq>>正常</option>
+											<option value="0"<eq name="C['web_close']" value="0">selected</eq>>禁止访问</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls" style="height: 100px;">
+									<td class="item-label">禁止访问原因 :</td>
+									<td><textarea name="web_close_cause" class="form-control" style="height: 80px; margin-top: 24px;">{$C['web_close_cause']}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">备案号 :</td>
+									<td><input type="text" class="form-control" name="web_icp" value="{$C['web_icp']}"></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls" style="height: 100px;">
+									<td class="item-label">统计代码:</td>
+									<td><textarea name="web_cnzz" class="form-control" style="height: 80px; margin-top: 24px;">{$C['web_cnzz']}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">用户注册协议 :</td>
+									<td><textarea name="web_reg" class="textarea input-8x" style="height: 80px; margin-top: 24px;">{$C['web_reg']}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class= "btn submit-btn"  target-form="form-horizontal" id="submit" type="submit">确 定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function(){
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+
+	var editor;
+	KindEditor.ready(function(K){
+		editor=K.create('textarea[name="web_reg"]',{width:'465px',height:'60px',items:['source','fontname','fontsize','|','forecolor','hilitecolor','bold','italic','underline','removeformat','|','justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','|','emoticons','link','fullscreen'],afterBlur: function () { this.sync(); }});
+	});
+</script>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.config-box').addClass('current');
+		//边导航高亮
+		$('.config-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,149 @@
+<include file="Public:header" />
+<div class="autobox">
+	<div class="now">
+		<a href="/" class="orange">首页</a> &gt; <a href="/finance/" class="orange">财务中心</a> &gt; 人民币充值
+	</div>
+	<div class="assets_center clear po_re zin70">
+		<!--左侧菜单-->
+		<include file="Finance:left" />
+		<!--右侧内容-->
+		<form id="form-cnyin" class="assets_content w900 right bg_w">
+	
+   <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+    <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">人民币充值</h1>
+   </div>
+   <div class="sj" style="top: 40px; left: 72px;"></div>
+   <br>
+    <div class="nav_info" style="padding-left: 26px;">
+    <p>
+     <i></i><span>在这里可以对您的账户进行充值!</span>
+    </p>
+   </div>
+   <br>
+   
+     <div class="weituo_bizhong">
+    <div class="bizhong_select">
+     <div class="bz_btn">
+     <img src="__PUBLIC__/Home/images/coin_rmb.png" alt=""  style="width: 22px; float: left; margin-top: 7px; margin-right: 5px;" /><apan style="float: left;
+padding-top: 9px;">　人民币(CNY)</apan>
+     </div>
+ 
+     
+    </div>
+    <div class="bizhong_type">
+     <span>可用<em class="coin-name"></em>：<font class="coin-balance">{$user_coin['cny']|NumToStr}</font></span> <span>冻结<em class="coin-name"></em>：<strong class="coin-lock">{$user_coin['cnyd']|NumToStr} </strong></span>
+    </div>
+   </div>
+   
+   
+   
+			<div class="choosepaymethod">
+				<div class="choosebanks" style="margin-top: 20px;">
+					<div class="methodway clearfix">
+						<div class="w_div clearfix">
+							<div class="w1">充值方式：</div>
+							<div class="w2">
+								<select name="type" id="mycz_type" style="width: 200px; height: 38px;">
+									<option value="">--选择方式--</option>
+									<volist name="myczTypeList" id="vo">
+									<option value="{$key}">{$vo}</option>
+									</volist>
+								</select>
+							</div>
+						</div>
+						<div class="w_div clearfix">
+							<div class="w1">充值金额：</div>
+							<div class="w2">
+								<input type="text" class="cztxinput" id="mycz_amount" value="">
+							</div>
+						</div>
+						<div class="w_div clearfix">
+							<div class="w1">&nbsp;</div>
+							<div class="w2">
+								<input type="button" class="btn-cztx" id="btn-submit" value="立即充值" title="立即充值">
+							</div>
+						</div>
+					</div>
+					<dl id="other_txxz" class="txxz">
+
+						{:htmlspecialchars_decode(C('mycz_text_index'))}
+
+
+
+					</dl>
+
+				</div>
+				<div class="f_body">
+					<table class="f_table" id="investLog_content">
+						<thead>
+							<tr>
+								<th width="">充值时间</th>
+								<th width="">充值订单</th>
+								<th width="">充值方式</th>
+								<th width="">充值金额</th>
+								<th width="">实际到账</th>
+								<th width="">到账时间</th>
+								<th width="">状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<volist name="list" id="vo">
+							<tr>
+								<td>{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+								<td>{$vo.tradeno}</td>
+								<td>{$vo.type}</td>
+								<td>{$vo['num']|NumToStr}</td>
+								<td>{$vo['mum']|NumToStr}</td>
+								<td><eq name="vo.endtime" value="0"> <else />{$vo.endtime|date='Y-m-d H:i:s',###}</eq></td>
+								<td><eq name="vo.status" value="1"> <font color="#23a800">充值成功 </font> <else /> <a href="{:U('Pay/mycz',array('id'=>$vo['id']))}" class="cur" target="_blank">去付款</a></eq></td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+					<div class="pages">{$page}</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<br>
+<br>
+<script>
+	$('#btn-submit').click(function(){
+	    var mbTest_num=/^([1-9]{1}\d*)(\.(\d){1,2})?$/;
+	    var type=$('#mycz_type option:selected').val();
+	    var num=$("#mycz_amount").val();
+	    if(type==""||type==null){
+		    layer.tips('请选择充值方式','#mycz_type',{tips:3 });
+		    return false;
+	    }
+	    if(num==""||num==null){
+		    layer.tips('请输入充值金额','#mycz_amount',{tips:3 });
+		    return false;
+	    }
+	    if(!mbTest_num.test(num)){
+		    layer.tips('充值金额格式错误 (人民币格式)','#mycz_amount',{tips:3 });
+		    return false;
+	    }
+	    $.post("{:U('Finance/upmycz')}",{type:type,num:num },function(data){
+		    if(data.status==1){
+			    layer.msg(data.info,{icon:1 });
+			    window.location="{:U('Pay/mycz')}?id="+data.url.id;
+		    }else{
+			    layer.msg(data.info,{icon:2 });
+			    if(data.url){
+				    window.location=data.url;
+			    }
+		    }
+	    },"json");
+    });
+</script>
+<script>
+$("title").html("{:C('web_title')} - 财务中心 - 人民币充值"); 
+	//菜单高亮
+    $('#finance_box').addClass('active');
+    $('#finance_mycz').addClass('active');
+    $('#finance_mycz i').attr('class','coin_menu_op_18');
+</script>
+<include file="Public:footer" />
